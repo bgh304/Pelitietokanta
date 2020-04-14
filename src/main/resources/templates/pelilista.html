@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pelilista</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-4">
+			<h1>Pelit</h1>
+		</div>
+	<div class="col-md-4">
+		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
+	<table class="table table-striped">
+		<tr>
+		    <th>Nimi</th>
+		    <th>Kehittäjä</th>
+			<th>Julkaisuvuosi</th>
+		    <th>Alusta</th>
+		    <th>Kategoria</th>
+		    <th>Saavutus</th>
+		    <th sec:authorize="hasAuthority('ADMIN')"> </th>
+		</tr>  
+	    <tr th:each = "peli : ${pelit}">
+	    	<td th:text="${peli.nimi}"></td>
+			<td th:text="${peli.kehittaja}"></td>
+    		<td th:text="${peli.julkaisuvuosi}"></td>
+	    	<td th:text="${peli.alusta}"></td>
+	    	<td th:text="${peli.kategoria.nimi}"></td>
+			<td th:text="${peli.saavutus}"></td> 	
+ 			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${peli.id})}" class="btn btn-xs btn-danger">Poista</a></td>
+	    </tr>
+	</table>
+	<a href="/add" class="btn btn-primary">Lisää peli</a>
+</body>
+</html>
