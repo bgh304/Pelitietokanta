@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pelilista</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Muokkaa peliä</h1>
+	<div class="container">
+		<div class="col-md-4">
+			<form th:object="${peli}" th:action="@{../save}" action="#" method="post">
+				<input type="hidden" id="id" th:field="*{id}" />
+			  	<label for="nimi">Nimi</label>
+				<input type="text" id="nimi" th:field="*{nimi}" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+			  	<label for="kehittaja">Kehittäjä</label>
+				<input type="text" id="kehittaja" th:field="*{kehittaja}" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<label for="julkaisuvuosi">Julkaisuvuosi</label>
+				<input type="text" id="julkaisuvuosi" th:field="*{julkaisuvuosi}" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<label for="alusta">Alusta</label>
+				<input type="text" id="alusta" th:field="*{alusta}" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+					
+				<label for="katlista">Kategoria</label>
+				<select id="katlista" th:field="*{kategoria}" class="form-control">
+		       		<option th:each="kategoria: ${kategoriat}" th:value="${kategoria.kategoriaid}" th:text="${kategoria.nimi}"></option>
+		    	</select>
+		    	<div style="clear: both; display: block; height: 10px;"></div>
+				
+				<label for="saavutus">Saavutus</label>
+				<input type="text" id="saavutus" th:field="*{saavutus}" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+				
+				<input type="submit" value="Tallenna"></input>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

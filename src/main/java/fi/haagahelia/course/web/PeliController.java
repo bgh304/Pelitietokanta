@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,12 @@ public class PeliController {
 
 	@Autowired
 	private KategoriaRepository drepository; 
+	
+	// Näytä kaikki pelit
+    @RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }
 	
 	// Näytä kaikki pelit
     @RequestMapping(value="/pelilista")
@@ -62,5 +69,13 @@ public class PeliController {
     public String deletePeli(@PathVariable("id") Long peliId, Model model) {
     	repository.deleteById(peliId);
         return "redirect:../pelilista";
-    }     
+    }
+    
+    // Muokkaa peliä
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editPeli(@PathVariable("id") Long peliId, Model model) {
+    	model.addAttribute("peli", repository.findById(peliId));
+    	model.addAttribute("kategoriat", drepository.findAll());
+    	return "muokkaapelia";
+    }
 }

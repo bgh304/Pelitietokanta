@@ -16,7 +16,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
-@Order(1000) // Oma lisäys jotta ohjelma toimisi
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailServiceImpl userDetailsService;	
@@ -26,10 +25,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
         .authorizeRequests().antMatchers("/css/**").permitAll() // CSS päälle uloskirjautumisessa
         .and()
-        .authorizeRequests()
-          .anyRequest().authenticated()
-          .and()
+        .authorizeRequests().antMatchers("/signup", "/saveuser").permitAll()
+        .and()
+        .authorizeRequests().anyRequest().authenticated()
+        .and()
       .formLogin()
+          .loginPage("/login")
           .defaultSuccessUrl("/pelilista")
           .permitAll()
           .and()

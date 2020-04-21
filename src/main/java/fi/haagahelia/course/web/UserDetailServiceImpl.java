@@ -11,7 +11,7 @@ import fi.haagahelia.course.domain.User;
 import fi.haagahelia.course.domain.UserRepository;
 
 /**
- * This class is used by spring security to authenticate and authorize user
+ * Spring security käyttää tätä luokkaa käyttäjän autentikoimiseen ja valtuuttamiseen
  **/
 @Service
 public class UserDetailServiceImpl implements UserDetailsService  {

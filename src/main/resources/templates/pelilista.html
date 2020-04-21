@@ -27,6 +27,7 @@
 		    <th>Kategoria</th>
 		    <th>Saavutus</th>
 		    <th sec:authorize="hasAuthority('ADMIN')"> </th>
+		    <th sec:authorize="hasAuthority('ADMIN')"> </th>
 		</tr>  
 	    <tr th:each = "peli : ${pelit}">
 	    	<td th:text="${peli.nimi}"></td>
@@ -34,7 +35,8 @@
     		<td th:text="${peli.julkaisuvuosi}"></td>
 	    	<td th:text="${peli.alusta}"></td>
 	    	<td th:text="${peli.kategoria.nimi}"></td>
-			<td th:text="${peli.saavutus}"></td> 	
+			<td th:text="${peli.saavutus}"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${peli.id})}" class="btn btn-xs btn-primary">Muokkaa</a></td>
  			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${peli.id})}" class="btn btn-xs btn-danger">Poista</a></td>
 	    </tr>
 	</table>
