@@ -12,8 +12,8 @@ import fi.haagahelia.course.domain.Kategoria;
 import fi.haagahelia.course.domain.KategoriaRepository;
 import fi.haagahelia.course.domain.Peli;
 import fi.haagahelia.course.domain.PeliRepository;
-import fi.haagahelia.course.domain.User;
-import fi.haagahelia.course.domain.UserRepository;
+import fi.haagahelia.course.domain.User2;
+import fi.haagahelia.course.domain.User2Repository;
 
 
 @SpringBootApplication
@@ -25,7 +25,7 @@ public class PelitietokantaApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner peliDemo(PeliRepository srepository, KategoriaRepository drepository, UserRepository urepository) {
+	public CommandLineRunner peliDemo(PeliRepository srepository, KategoriaRepository drepository, User2Repository urepository) {
 		return (args) -> {
 			log.info("tallenna muutama peli, kategoria ja käyttäjä");
 			drepository.save(new Kategoria("Toiminta"));
@@ -36,8 +36,8 @@ public class PelitietokantaApplication {
 			srepository.save(new Peli("Super Mario World", "Nintendo", 1990, "SNES", drepository.findByNimi("Tasohyppely").get(0), "Läpi yhdellä elämällä"));	
 			srepository.save(new Peli("Final Fantasy VI", "Square", 1997, "PS1", drepository.findByNimi("Roolipeli").get(0), "Läpi yhdellä istumalla"));
 			
-			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
-			User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+			User2 user1 = new User2("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+			User2 user2 = new User2("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
 			urepository.save(user1);
 			urepository.save(user2);
 			

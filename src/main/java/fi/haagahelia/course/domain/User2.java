@@ -3,7 +3,7 @@ package fi.haagahelia.course.domain;
 import javax.persistence.*;
 
 @Entity
-public class User {
+public class User2 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +20,10 @@ public class User {
     @Column(name = "role", nullable = false)
     private String role;
     
-    public User() {
+    public User2() {
     }
 
-	public User(String username, String passwordHash, String role) {
+	public User2(String username, String passwordHash, String role) {
 		super();
 		this.username = username;
 		this.passwordHash = passwordHash;
