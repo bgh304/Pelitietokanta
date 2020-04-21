@@ -28,7 +28,7 @@ public class PelitietokantaApplication {
 	public CommandLineRunner peliDemo(PeliRepository srepository, KategoriaRepository drepository, User2Repository urepository) {
 		return (args) -> {
 			log.info("tallenna muutama peli, kategoria ja käyttäjä");
-			drepository.save(new Kategoria("Toiminta"));
+			/*drepository.save(new Kategoria("Toiminta"));
 			drepository.save(new Kategoria("Tasohyppely"));
 			drepository.save(new Kategoria("Roolipeli"));
 			
@@ -39,7 +39,7 @@ public class PelitietokantaApplication {
 			User2 user1 = new User2("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
 			User2 user2 = new User2("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
 			urepository.save(user1);
-			urepository.save(user2);
+			urepository.save(user2);*/
 			
 			log.info("kerää kaikki pelit");
 			for (Peli peli : srepository.findAll()) {
